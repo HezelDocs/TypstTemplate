@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash script/test.sh)",
+      "Bash(bash script/new-project.sh practicalWork /tmp/test-new-project)",
+      "Read(//tmp/**)",
+      "Bash(rm -rf /tmp/test-new-project)"
+    ]
+  }
+}
