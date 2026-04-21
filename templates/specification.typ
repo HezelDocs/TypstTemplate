@@ -1,4 +1,5 @@
 #import "../common/colors.typ": colors
+#import "@preview/linguify:0.5.0": linguify, set-database
 
 #let specification(
   report: (:),
@@ -9,14 +10,17 @@
   mandants: (),
   experts: (),
   versions: (),
+  lang: "fr",
   logo: none,
   body,
 ) = {
   set page(flipped: false, margin: (bottom: 2cm, top: 2cm, x: 1.5cm), paper: "a4")
-  set text(region: "ch", lang: "fr", font: "Roboto", size: 11pt, weight: "regular")
+  set text(region: "ch", lang: lang, font: "Roboto", size: 11pt, weight: "regular")
   show link: set text(fill: blue.darken(60%))
   set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: ([•], [◦], [⁃]))
   set enum(indent: 5pt, spacing: 0.8em, body-indent: 0.4em)
+
+  set-database(toml("../common/lang.toml"))
 
   // Cover page
   {
@@ -56,23 +60,23 @@
 
     table(
       columns: (25%, 75%),
-      [École],              [#entity.name],
-      [Filière],            [#entity.sector],
-      [Orientation],        [#entity.orientation],
-      [Année],              [#entity.year],
-      [Auteur],             [#for a in authors {
-                                if a == authors.first() { a.lastname + " " + a.firstname }
-                                else { ", " + a.lastname + " " + a.firstname }
-                              }],
-      [Superviseurs],       [#for s in supervisors {
-                                if s == supervisors.first() { s.lastname + " " + s.firstname }
-                                else { ", " + s.lastname + " " + s.firstname }
-                              }],
-      [Lieu],               [#entity.locality],
-      [Date de création],   [#report.date_creation.display()],
-      [Date de rendu],      [#datetime.today().display()],
-      [Version],            [#versions.last().version],
-      [GitLab],             [#link(project.git_url)[URL GITLAB]],
+      [#linguify("school")],        [#entity.name],
+      [#linguify("sector")],        [#entity.sector],
+      [#linguify("orientation")],   [#entity.orientation],
+      [#linguify("year")],          [#entity.year],
+      [#linguify("author")],        [#for a in authors {
+                                        if a == authors.first() { a.lastname + " " + a.firstname }
+                                        else { ", " + a.lastname + " " + a.firstname }
+                                      }],
+      [#linguify("supervisors")],   [#for s in supervisors {
+                                        if s == supervisors.first() { s.lastname + " " + s.firstname }
+                                        else { ", " + s.lastname + " " + s.firstname }
+                                      }],
+      [#linguify("locality")],      [#entity.locality],
+      [#linguify("date_creation")], [#report.date_creation.display()],
+      [#linguify("date_rendu")],    [#datetime.today().display()],
+      [#linguify("version")],       [#versions.last().version],
+      [#linguify("gitlab")],        [#link(project.git_url)[#linguify("gitlab_url")]],
     )
 
     pagebreak()

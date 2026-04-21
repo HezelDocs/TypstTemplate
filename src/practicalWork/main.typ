@@ -1,7 +1,5 @@
-#import "@local/hezel-templates:0.1.0": practical-work, tr-practical-work, resolve-tr
+#import "@local/hezel-templates:0.1.0": practical-work, linguify
 #import "data/metadata.typ": metadata, authors
-
-#let t = resolve-tr(tr-practical-work, metadata.lang)
 
 #show: practical-work.with(
   metadata: metadata,
@@ -12,17 +10,17 @@
 // ---------- Introduction
 
 #pagebreak()
-= #t.introduction <introduction>
+= #linguify("introduction") <introduction>
 #include "section/introduction.typ"
 
 // ---------- Implementation
 
 #pagebreak()
-= #t.implementation <implementation>
+= #linguify("implementation") <implementation>
 #include "section/implementation.typ"
 
 // ---------- Conclusion
 
 #pagebreak()
-= #t.conclusion <conclusion>
+= #linguify("conclusion") <conclusion>
 #include "section/conclusion.typ"

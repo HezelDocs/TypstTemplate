@@ -1,4 +1,4 @@
-#import "@local/hezel-templates:0.1.0": specification
+#import "@local/hezel-templates:0.1.0": specification, linguify
 #import "./values/metadata.typ": report, project, entity, authors, supervisors, mandants, experts, versions
 
 #show: specification.with(
@@ -15,7 +15,7 @@
 
 // ---------- Table des versions
 
-= Table des versions <table_versions>
+= #linguify("table_versions") <table_versions>
 #include "section/table_versions.typ"
 
 // ---------- Table des matières
@@ -26,25 +26,25 @@
 // ---------- Glossaire
 
 #pagebreak()
-= Glossaire <glossary>
+= #linguify("glossary") <glossary>
 #include "bibliography/glossary.typ"
 
 // ---------- Contexte
 
 #pagebreak()
-= Contexte <context>
+= #linguify("context") <context>
 #include "section/context.typ"
 
 // ---------- Objectifs
 
 #pagebreak()
-= Objectifs <goals>
+= #linguify("goals") <goals>
 #include "section/goals.typ"
 
 // ---------- Activités
 
 #pagebreak()
-= Activités <activities>
+= #linguify("activities") <activities>
 #include "section/activities.typ"
 
 // ---------- Planning
@@ -55,11 +55,11 @@
 // ---------- Table des références
 
 #pagebreak()
-= Table des références <table_references>
+= #linguify("table_references") <table_references>
 #include "section/table_references.typ"
 
 // ---------- Table des illustrations
 
 #pagebreak()
-= Table des illustrations <table_illustations>
+= #linguify("table_illustrations") <table_illustations>
 #include "section/table_illustrations.typ"

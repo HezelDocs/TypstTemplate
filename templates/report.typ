@@ -1,43 +1,6 @@
 #import "../common/colors.typ": colors
-#import "../common/utils.typ": resolve-tr
+#import "@preview/linguify:0.5.0": linguify, set-database
 
-#let tr-report = (
-  table_version:      (fr: "Table des versions",       en: "Revision History"),
-  summary:            (fr: "Résumé",                   en: "Abstract"),
-  table_content:      (fr: "Table des matières",       en: "Table of Contents"),
-  introduction:       (fr: "Introduction",             en: "Introduction"),
-  contexte:           (fr: "Contexte",                 en: "Context"),
-  analysis:           (fr: "Analyse",                  en: "Analysis"),
-  conception:         (fr: "Conception",               en: "Design"),
-  implementation:     (fr: "Implémentation",           en: "Implementation"),
-  testing:            (fr: "Tests et validations",     en: "Testing & Validation"),
-  potential_dev:      (fr: "Évolutions possibles",     en: "Possible Improvements"),
-  conclusion:         (fr: "Conclusion",               en: "Conclusion"),
-  honor:              (fr: "Déclaration sur l'honneur", en: "Declaration of Honor"),
-  acknowledgements:   (fr: "Remerciements",            en: "Acknowledgements"),
-  glossary:           (fr: "Glossaire",                en: "Glossary"),
-  table_references:   (fr: "Table des références",     en: "References"),
-  table_illustrations:(fr: "Table des illustrations",  en: "List of Figures"),
-  annexes:            (fr: "Annexes",                  en: "Appendices"),
-  appendice:          (fr: "Annexe",                   en: "Appendix"),
-)
-
-#let _tr-cover = (
-  entite:       (fr: "Entité",              en: "Entity"),
-  section:      (fr: "Filière",            en: "Program"),
-  profil:       (fr: "Orientation",        en: "Specialization"),
-  year:         (fr: "Année",              en: "Year"),
-  autor:        (fr: "Auteur·s",           en: "Author(s)"),
-  supervisor:   (fr: "Superviseur·s",      en: "Supervisor(s)"),
-  expert:       (fr: "Expert·s",           en: "Expert(s)"),
-  locality:     (fr: "Lieu",               en: "Location"),
-  date_creation:(fr: "Date de création",   en: "Creation date"),
-  date_rendu:   (fr: "Date de rendu",      en: "Submission date"),
-  version:      (fr: "Version",            en: "Version"),
-  gitlab:       (fr: "GitLab",             en: "GitLab"),
-)
-
-// Non-outlined chapter header: same visual as h1 but excluded from ToC.
 #let chapter-header(title) = {
   set align(center)
   block(
@@ -64,7 +27,7 @@
   set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: ([•], [◦], [⁃]))
   set enum(indent: 5pt, spacing: 0.8em, body-indent: 0.4em)
 
-  let tc = resolve-tr(_tr-cover, metadata.lang)
+  set-database(toml("../common/lang.toml"))
 
   // Cover page
   {
@@ -104,27 +67,27 @@
 
     table(
       columns: (25%, 75%),
-      [#tc.entite],       [#metadata.entity],
-      [#tc.section],      [#metadata.section],
-      [#tc.profil],       [#metadata.profil],
-      [#tc.year],         [#metadata.year],
-      [#tc.autor],        [#for a in authors {
-                              a.firstname + " " + a.lastname
-                              if a != authors.last() { ", " }
-                            }],
-      [#tc.supervisor],   [#for s in supervisors {
-                              s.firstname + " " + s.lastname
-                              if s != supervisors.last() { ", " }
-                            }],
-      [#tc.expert],       [#for e in experts {
-                              e.firstname + " " + e.lastname
-                              if e != experts.last() { ", " }
-                            }],
-      [#tc.locality],     [#metadata.locality],
-      [#tc.date_creation],[#metadata.date_creation.display()],
-      [#tc.date_rendu],   [#datetime.today().display()],
-      [#tc.version],      [#versions.last().version],
-      [#tc.gitlab],       [#link(metadata.git_url)],
+      [#linguify("entite")],        [#metadata.entity],
+      [#linguify("section")],       [#metadata.section],
+      [#linguify("profil")],        [#metadata.profil],
+      [#linguify("year")],          [#metadata.year],
+      [#linguify("autor")],         [#for a in authors {
+                                        a.firstname + " " + a.lastname
+                                        if a != authors.last() { ", " }
+                                      }],
+      [#linguify("supervisor")],    [#for s in supervisors {
+                                        s.firstname + " " + s.lastname
+                                        if s != supervisors.last() { ", " }
+                                      }],
+      [#linguify("expert")],        [#for e in experts {
+                                        e.firstname + " " + e.lastname
+                                        if e != experts.last() { ", " }
+                                      }],
+      [#linguify("locality")],      [#metadata.locality],
+      [#linguify("date_creation")], [#metadata.date_creation.display()],
+      [#linguify("date_rendu")],    [#datetime.today().display()],
+      [#linguify("version")],       [#versions.last().version],
+      [#linguify("gitlab")],        [#link(metadata.git_url)],
     )
 
     pagebreak()

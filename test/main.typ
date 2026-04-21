@@ -1,7 +1,5 @@
-#import "@local/hezel-templates:0.1.0": report, tr-report, resolve-tr, chapter-header, colors
+#import "@local/hezel-templates:0.1.0": report, chapter-header, colors, linguify
 #import "data/metadata.typ": metadata, authors, supervisors, experts, versions
-
-#let t = resolve-tr(tr-report, metadata.lang)
 
 #show: report.with(
   metadata: metadata,
@@ -14,13 +12,13 @@
 
 // ---------- Table of Versions
 
-#chapter-header(t.table_version) <table_versions>
+#chapter-header(linguify("table_version")) <table_versions>
 #include "table/table_versions.typ"
 
 // ---------- Executive Summary
 
 #pagebreak()
-#chapter-header(t.summary) <executive_summary>
+#chapter-header(linguify("summary")) <executive_summary>
 #include "section/summary.typ"
 
 // ---------- Table of Contents
@@ -31,88 +29,88 @@
 // ---------- Introduction
 
 #pagebreak()
-= #t.introduction <introduction>
+= #linguify("introduction") <introduction>
 #include "section/introduction.typ"
 
 // ---------- Context
 
 #pagebreak()
-= #t.contexte <context>
+= #linguify("contexte") <context>
 #include "section/context.typ"
 
 // ---------- Analysis
 
 #pagebreak()
-= #t.analysis <analysis>
+= #linguify("analysis") <analysis>
 #include "section/analysis.typ"
 
 // ---------- Conception
 
 #pagebreak()
-= #t.conception <conception>
+= #linguify("conception") <conception>
 #include "section/conception.typ"
 
 // ---------- Implementation
 
 #pagebreak()
-= #t.implementation <implementation>
+= #linguify("implementation") <implementation>
 #include "section/implementation.typ"
 
 // ---------- Testing and Validation
 
 #pagebreak()
-= #t.testing <testing>
+= #linguify("testing") <testing>
 #include "section/testing.typ"
 
 // ---------- Potential Developments
 
 #pagebreak()
-= #t.potential_dev <potentiel_dev>
+= #linguify("potential_dev") <potentiel_dev>
 #include "section/potentiel_dev.typ"
 
 // ---------- Conclusion
 
 #pagebreak()
-= #t.conclusion <conclusion>
+= #linguify("conclusion") <conclusion>
 #include "section/conclusion.typ"
 
 // ---------- Declaration of Honor
 
 #pagebreak()
-= #t.honor <honor>
+= #linguify("honor") <honor>
 #include "section/honor.typ"
 
 // ---------- Acknowledgements
 
 #pagebreak()
-= #t.acknowledgements <acknowledgements>
+= #linguify("acknowledgements") <acknowledgements>
 #include "section/acknowledgements.typ"
 
 // ---------- Glossary
 
 #pagebreak()
-#chapter-header(t.glossary) <glossary>
+#chapter-header(linguify("glossary")) <glossary>
 #include "bibliography/glossary.typ"
 
 // ---------- Table of References
 
 #pagebreak()
-= #t.table_references <table_references>
+= #linguify("table_references") <table_references>
 #include "table/table_references.typ"
 
 // ---------- Table of Illustrations
 
 #pagebreak()
-= #t.table_illustrations <table_illustrations>
+= #linguify("table_illustrations") <table_illustrations>
 #include "table/table_illustrations.typ"
 
 // ---------- Annexes
 
 #pagebreak()
-= #t.annexes <annexes>
+= #linguify("annexes") <annexes>
 
 #let appendix(body) = {
-  set heading(supplement: [#t.appendice])
+  set heading(supplement: [#linguify("appendice")])
   counter(heading).update(13)
   body
 }

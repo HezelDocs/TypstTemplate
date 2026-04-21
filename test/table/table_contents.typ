@@ -27,12 +27,9 @@
 
 // ---------- Imports
 
-#import "../data/metadata.typ": metadata
-#import "@local/hezel-templates:0.1.0": tr-report, resolve-tr
+#import "@local/hezel-templates:0.1.0": linguify
 
 // ---------- Table of Contents
-
-#let t = resolve-tr(tr-report, metadata.lang)
 
 #show outline.entry.where(level: 1): it => {
   v(16pt, weak: true)
@@ -40,7 +37,7 @@
 }
 
 #outline(
-  title: t.table_content,
+  title: linguify("table_content"),
   depth: 2,
   indent: 2em,
 )

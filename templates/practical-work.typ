@@ -1,17 +1,5 @@
 #import "../common/colors.typ": colors
-#import "../common/utils.typ": resolve-tr
-
-#let tr-practical-work = (
-  introduction:   (fr: "Introduction",  en: "Introduction"),
-  implementation: (fr: "Implémentation", en: "Implementation"),
-  conclusion:     (fr: "Conclusion",     en: "Conclusion"),
-)
-
-#let _tr-cover = (
-  date_creation: (fr: "Date de création", en: "Creation date"),
-  date_rendu:    (fr: "Date de rendu",    en: "Submission date"),
-  gitlab:        (fr: "GitLab",           en: "GitLab"),
-)
+#import "@preview/linguify:0.5.0": linguify, set-database
 
 #let practical-work(metadata: (:), authors: (), logo: none, body) = {
   set page(flipped: false, margin: (bottom: 2cm, top: 2cm, x: 1.5cm), paper: "a4")
@@ -20,7 +8,7 @@
   set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: ([•], [◦], [⁃]))
   set enum(indent: 5pt, spacing: 0.8em, body-indent: 0.4em)
 
-  let tc = resolve-tr(_tr-cover, metadata.lang)
+  set-database(toml("../common/lang.toml"))
 
   // Cover page (scoped to avoid leaking set rules into body)
   {
@@ -58,9 +46,9 @@
       stroke: none,
       inset: 3pt,
       align: left + horizon,
-      [Repository URI],   [#link(metadata.git_url)[#metadata.git_url]],
-      [#tc.date_creation], [#metadata.date_creation.display()],
-      [#tc.date_rendu],   [#datetime.today().display()],
+      [#linguify("repository_uri")], [#link(metadata.git_url)[#metadata.git_url]],
+      [#linguify("date_creation")],  [#metadata.date_creation.display()],
+      [#linguify("date_rendu")],     [#datetime.today().display()],
     )
 
     pagebreak()
