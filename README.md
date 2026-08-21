@@ -1,1 +1,1 @@
-# typst_template
+# TypstTemplate
