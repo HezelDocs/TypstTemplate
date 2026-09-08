@@ -16,7 +16,8 @@ $EDITOR ~/Projects/MyReport/data/metadata.typ
 typst compile ~/Projects/MyReport/main.typ
 ```
 
-Re-run `./script/install.sh` whenever you modify the package source. Run `./script/test.sh` to verify all templates still compile after a change (it reinstalls automatically before testing).
+Re-run `./script/install.sh` whenever you modify the package source. Run `./script/test.sh` to verify
+all templates still compile after a change (it reinstalls automatically before testing).
 
 ---
 
@@ -34,30 +35,35 @@ Re-run `./script/install.sh` whenever you modify the package source. Run `./scri
 
 ## Repository structure
 
-```
+```text
 typstTemplate/
-├── typst.toml              # Package manifest (name, version, entrypoint)
-├── lib.typ                 # Package entry point — re-exports everything
+├── typst.toml               # Package manifest (name, version, entrypoint)
+├── lib.typ                  # Package entry point — re-exports everything
 ├── common/
-│   ├── colors.typ          # Shared color palette (c1–c4)
-│   └── utils.typ           # resolve-tr(), lang, gender, title enums
+│   ├── colors.typ           # Shared color palette (c1–c4)
+│   ├── lang.toml            # Bilingual (en/fr) string database (linguify)
+│   └── utils.typ            # resolve-tr(), lang, gender, title enums
 ├── templates/
-│   ├── practical-work.typ  # Layout function + default translations
-│   ├── report.typ          # Layout function + chapter-header helper
-│   ├── minutes-meeting.typ # Full meeting minutes renderer
-│   ├── minutes-agenda.typ  # Full meeting agenda renderer
-│   └── specification.typ   # Project specification layout (French)
-├── install.sh              # Copies package to ~/.local/share/typst/packages/local/
-├── new-project.sh          # Scaffolds a new project from a template directory
+│   ├── practical-work.typ   # Layout function + default translations
+│   ├── report.typ           # Layout function + chapter-header helper
+│   ├── minutes-meeting.typ  # Full meeting minutes renderer
+│   ├── minutes-agenda.typ   # Full meeting agenda renderer
+│   └── specification.typ    # Project specification layout (French)
+├── script/
+│   ├── install.sh            # Copies package to ~/.local/share/typst/packages/local/
+│   ├── new-project.sh        # Scaffolds a new project from a scaffolds/ directory
+│   └── test.sh                # Reinstalls the package and compiles every scaffold
 │
-├── report/                 # Scaffold + example for the report template
-├── practicalWork/          # Scaffold + example for the practical work template
-├── minutesMeeting/         # Scaffold + example for the meeting minutes template
-├── minutesAgenda/          # Scaffold + example for the meeting agenda template
-└── specification/          # Scaffold + example for the specification template
+└── scaffolds/                # Working example + starting point for each template
+    ├── report/
+    ├── practicalWork/
+    ├── minutesMeeting/
+    ├── minutesAgenda/
+    └── specification/
 ```
 
-Each template directory is both a working example and a scaffold — `new-project.sh` copies one of them to start your project.
+Each `scaffolds/` directory is both a working example and a starting point — `new-project.sh` copies
+one of them to start your project.
 
 ---
 
@@ -83,7 +89,7 @@ All templates are used as show rules:
 | `report` | show rule | `metadata`, `authors`, `supervisors`, `experts`, `versions`, `logo` |
 | `minutes-meeting` | show rule | `minute`, `actors`, `talks`, `tasks`, `logo` |
 | `minutes-agenda` | show rule | `agenda`, `actors`, `goals`, `logo` |
-| `specification` | show rule | `report`, `project`, `entity`, `authors`, `supervisors`, `mandants`, `experts`, `versions`, `logo` |
+| `specification` | show rule | `report, project, entity, authors, supervisors, mandants, experts, versions, logo` |
 
 ### Utilities
 
@@ -107,7 +113,7 @@ All templates are used as show rules:
 
 After scaffolding, a project looks like this:
 
-```
+```text
 my-report/
 ├── main.typ               # Imports package + lists sections
 ├── data/
@@ -152,7 +158,7 @@ my-report/
 
 These templates are fully data-driven — no section files needed:
 
-```
+```text
 my-meeting/
 ├── main.typ
 └── data/
@@ -186,7 +192,7 @@ After modifying the package source (`common/` or `templates/`), run:
 
 This reinstalls the package and compiles all 5 scaffold templates. Output example:
 
-```
+```text
 Installing package...
 
 Running template compilation tests...
@@ -206,7 +212,8 @@ Exit code is non-zero if any template fails, so it works in CI too.
 
 ## Updating the package
 
-The package source lives in this repository. Changes to `lib.typ`, `common/`, or `templates/` are not live until you reinstall:
+The package source lives in this repository. Changes to `lib.typ`, `common/`, or `templates/` are not
+live until you reinstall:
 
 ```bash
 ./script/install.sh

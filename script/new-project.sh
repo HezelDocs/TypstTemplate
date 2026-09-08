@@ -16,7 +16,7 @@ usage() {
 [[ -z "$TEMPLATE" || -z "$DEST" ]] && usage
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SRC="$REPO_DIR/src/$TEMPLATE"
+SRC="$REPO_DIR/scaffolds/$TEMPLATE"
 
 if [ ! -d "$SRC" ]; then
   echo "Unknown template: $TEMPLATE"

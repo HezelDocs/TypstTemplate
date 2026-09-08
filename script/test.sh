@@ -25,7 +25,7 @@ echo "Running template compilation tests..."
 echo "--------------------------------------"
 
 for template in "${TEMPLATES[@]}"; do
-  main="$REPO_DIR/src/$template/main.typ"
+  main="$REPO_DIR/scaffolds/$template/main.typ"
 
   if [ ! -f "$main" ]; then
     echo -e "  ${YELLOW}SKIP${NC}  $template  (no main.typ)"
