@@ -64,4 +64,4 @@ hooks = [{ id = "typstyle" }]
 
 [[repos]]
 repo = "local"
-hooks = [{ id = "typst-compile", name = "typst compile check", entry = "typst compile main.typ /tmp/typst-precommit-check.pdf", language = "system", files = "\\.typ$", pass_filenames = false }]
+hooks = [{ id = "typst-compile", name = "typst compile check", entry = "sh -c 'set -e; bash script/install.sh >/dev/null; for f in scaffolds/*/main.typ; do typst compile \"$f\" /tmp/typst-precommit-check.pdf; done'", language = "system", files = "\\.typ$", pass_filenames = false }]

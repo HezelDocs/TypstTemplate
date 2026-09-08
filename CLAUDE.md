@@ -1,3 +1,3 @@
-# TypstTemplate
+# Template
 
 TODO
