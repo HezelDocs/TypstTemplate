@@ -1,0 +1,67 @@
+[[repos]]
+repo = "https://github.com/pre-commit/pre-commit-hooks"
+rev = "v6.0.0"
+hooks = [
+  { id = "check-yaml" },
+  { id = "check-json" },
+  { id = "check-xml" },
+  { id = "check-toml" },
+  { id = "check-symlinks" },
+  { id = "check-case-conflict" },
+  { id = "check-illegal-windows-names" },
+  { id = "end-of-file-fixer" },
+  { id = "trailing-whitespace" },
+  { id = "check-added-large-files", args = [
+    "--maxkb=1000",
+  ] },
+  { id = "detect-private-key" },
+]
+
+[[repos]]
+repo = "https://github.com/gitleaks/gitleaks"
+rev = "v8.24.2"
+hooks = [{ id = "gitleaks" }]
+
+[[repos]]
+repo = "https://github.com/jackdewinter/pymarkdown"
+rev = "v0.9.18"
+hooks = [{ id = "pymarkdown", args = [
+  "--set",
+  "plugins.MD013.line_length=$#120",
+  "--set",
+  "plugins.MD013.heading_line_length=$#120",
+  "--set",
+  "plugins.MD013.code_block_line_length=$#120",
+  "--set",
+  "plugins.MD013.code_blocks=$!False",
+  "scan",
+] }]
+
+[[repos]]
+repo = "https://github.com/adrienverge/yamllint"
+rev = "v1.38.0"
+hooks = [{ id = "yamllint" }]
+
+[[repos]]
+repo = "https://github.com/shellcheck-py/shellcheck-py"
+rev = "v0.11.0.1-1"
+hooks = [{ id = "shellcheck" }]
+
+[[repos]]
+repo = "https://github.com/scop/pre-commit-shfmt"
+rev = "v3.13.1-1"
+hooks = [{ id = "shfmt", args = ["--write", "--indent", "2"] }]
+
+[[repos]]
+repo = "https://github.com/rbubley/mirrors-prettier"
+rev = "v3.9.6"
+hooks = [{ id = "prettier", types = ["json"] }]
+
+[[repos]]
+repo = "https://github.com/typstyle-rs/pre-commit-typstyle"
+rev = "v0.15.1"
+hooks = [{ id = "typstyle" }]
+
+[[repos]]
+repo = "local"
+hooks = [{ id = "typst-compile", name = "typst compile check", entry = "typst compile main.typ /tmp/typst-precommit-check.pdf", language = "system", files = "\\.typ$", pass_filenames = false }]
