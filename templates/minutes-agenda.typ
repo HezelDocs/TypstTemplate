@@ -9,7 +9,11 @@
   }
   show link: set text(fill: blue.darken(60%))
   set page(numbering: "1/1")
-  set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: ([•], [◦], [⁃]))
+  set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: (
+    [•],
+    [◦],
+    [⁃],
+  ))
 
   set-database(toml("../common/lang.toml"))
 
@@ -30,7 +34,7 @@
   let chairman = ""
   for a in actors {
     if a.isChairman { chairman = a.lastname + " " + a.firstname }
-    if a.isScribe   { scribe   = a.lastname + " " + a.firstname }
+    if a.isScribe { scribe = a.lastname + " " + a.firstname }
     if chairman != "" and scribe != "" { break }
   }
 
@@ -50,28 +54,37 @@
   table(
     columns: (22%, 78%),
     align: horizon,
-    [*#linguify("location")*], [#agenda.location_name – #agenda.location_street – #agenda.location_npa #agenda.location_locality],
-    [*#linguify("room")*],     [#agenda.location_room],
-    [*#linguify("date")*],     [#agenda.seance_date.display()],
+    [*#linguify("location")*],
+    [#agenda.location_name – #agenda.location_street – #agenda.location_npa #agenda.location_locality],
+
+    [*#linguify("room")*], [#agenda.location_room],
+    [*#linguify("date")*], [#agenda.seance_date.display()],
     [*#linguify("schedule")*], [#agenda.schedule],
   )
 
   table(
     columns: (22%, 78%),
     align: horizon,
-    [*#linguify("meeting_chair")*],         [#chairman],
-    [*#linguify("minute_taker")*],          [#scribe],
-    [*#linguify("expected_participants")*], [
+    [*#linguify("meeting_chair")*], [#chairman],
+    [*#linguify("minute_taker")*], [#scribe],
+    [*#linguify("expected_participants")*],
+    [
       #for a in actors {
         if not a.excused {
-          if a == actors.first() { a.lastname + " " + a.firstname }
-          else { ", " + a.lastname + " " + a.firstname }
+          if a == actors.first() { a.lastname + " " + a.firstname } else {
+            ", " + a.lastname + " " + a.firstname
+          }
         }
       }
     ],
-    [*#linguify("excused")*], [
+
+    [*#linguify("excused")*],
+    [
       #for a in actors {
-        if a.excused { a.lastname + " " + a.firstname; if a != actors.last() { ", " } }
+        if a.excused {
+          a.lastname + " " + a.firstname
+          if a != actors.last() { ", " }
+        }
       }
     ],
   )
@@ -85,7 +98,7 @@
   table(
     columns: (20%, 80%),
     table.header[*#linguify("duration_min")*][*#linguify("objectives")*],
-    ..for goal in goals { (str(goal.duration), goal.desc) }
+    ..for goal in goals { (str(goal.duration), goal.desc) },
   )
 
   body

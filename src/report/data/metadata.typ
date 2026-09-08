@@ -1,4 +1,4 @@
-#import "@local/hezel-templates:0.1.0": lang, gender
+#import "@local/hezel-templates:0.1.0": gender, lang
 
 // ---------- Metadata
 
@@ -24,7 +24,12 @@
 // ---------- Persons
 
 #let authors = (
-  (firstname: "Dimitri", lastname: "Julmy", gender: gender.m, locality: "Fribourg"),
+  (
+    firstname: "Dimitri",
+    lastname: "Julmy",
+    gender: gender.m,
+    locality: "Fribourg",
+  ),
 )
 
 #let supervisors = (

@@ -11,7 +11,7 @@
 // ---------- Imports
 
 // Third-party
-#import "@preview/timeliney:0.2.1"
+#import "@preview/timeliney:0.4.0"
 
 // Values
 #import "../values/styling_data.typ": colors
@@ -42,7 +42,7 @@
   show-grid: true,
   {
     import timeliney: *
-      
+
     headerline(group(([*2024*], 14)), group(([*2025*], 5)))
     headerline(
       group(..range(14).map(n => strong("A" + str(n + 1)))),
@@ -54,10 +54,9 @@
       taskgroup(title: [*#tg.name*], {
         for t in tasks {
           if tg.key == t.related_group {
-            task(t.name, (t.from,t.to), style: (stroke: 2pt + gray))
+            task(t.name, (t.from, t.to), style: (stroke: 2pt + gray))
           }
         }
-        
       })
     }
 
@@ -68,8 +67,8 @@
         style: (stroke: (dash: "dashed")),
         align(center, [
           #m.name
-        ])
+        ]),
       )
     }
-  }
+  },
 )

@@ -25,14 +25,18 @@
 En accord avec l'objectif et les suggestions du mandant, les phases/groupement de tâches suivants sont posées.
 
 // Apply styling to the header
-#show table.cell.where(y: 0):set text(weight: "medium", size: 13pt, fill: white)
+#show table.cell.where(y: 0): set text(
+  weight: "medium",
+  size: 13pt,
+  fill: white,
+)
 
 // Apply styling to the frame
 #let frame(stroke) = (x, y) => (
-  left: if calc.odd(x) {1pt},
-  right: if x == 1 {1pt},
-  top: if y == 3 {1pt},
-  bottom: if y == 2 {1pt},
+  left: if calc.odd(x) { 1pt },
+  right: if x == 1 { 1pt },
+  top: if y == 3 { 1pt },
+  bottom: if y == 2 { 1pt },
 )
 
 #for tg in tasksgroups {
@@ -52,7 +56,7 @@ En accord avec l'objectif et les suggestions du mandant, les phases/groupement d
           weight: "medium",
           fill: white,
           tg.name,
-        )
+        ),
       ),
 
       // Activity description
@@ -67,23 +71,29 @@ En accord avec l'objectif et les suggestions du mandant, les phases/groupement d
         inset: 7pt,
         [*Délivrable* : #tg.deliverable],
       )
-    )
+    ),
   )
 }
 
 == Répartition du temps
 
-Ce #lower(project.scope) possède un poids de #project.credits crédits (1 crédit équivaut à #project.hours_per_credit heures de travail) étalé sur #project.duration semaines. En plus de la réunion hebdomadaire d'environ 30 minutes entre les différents acteurs du projet, le temps moyen par semaine alloué au projet est de #{calc.floor(project.credits*project.hours_per_credit/project.duration)} heures. La répartition suivante du temps est proposée :
+Ce #lower(project.scope) possède un poids de #project.credits crédits (1 crédit équivaut à #project.hours_per_credit heures de travail) étalé sur #project.duration semaines. En plus de la réunion hebdomadaire d'environ 30 minutes entre les différents acteurs du projet, le temps moyen par semaine alloué au projet est de #{ calc.floor(project.credits * project.hours_per_credit / project.duration) } heures. La répartition suivante du temps est proposée :
 
 // Apply styling to the header
-#show table.cell.where(y: 0):set text(weight: "medium", size: 13pt, fill: white)
+#show table.cell.where(y: 0): set text(
+  weight: "medium",
+  size: 13pt,
+  fill: white,
+)
 
 // Apply styling to the frame
 #let frame(stroke) = (x, y) => (
-  left: if x == 0 {0pt} else {1pt},
-  right: if x == 0 {1pt} else {0pt},
-  top: if y == 0 or y == 1 {2pt},
-  bottom: if y == 0 {2pt} else if y == tasksgroups.len()+1 {0pt} else {1pt},
+  left: if x == 0 { 0pt } else { 1pt },
+  right: if x == 0 { 1pt } else { 0pt },
+  top: if y == 0 or y == 1 { 2pt },
+  bottom: if y == 0 { 2pt } else if y == tasksgroups.len() + 1 { 0pt } else {
+    1pt
+  },
 )
 
 // Display versions data
@@ -92,21 +102,28 @@ Ce #lower(project.scope) possède un poids de #project.credits crédits (1 créd
 #table(
   columns: (70%, 30%),
   inset: 8pt,
-  fill: (_, y) => 
-    if y == 0 {colors.c3}
-    else if y == tasksgroups.len() + 1 {colors.c4},
+  fill: (_, y) => if y == 0 { colors.c3 } else if y == tasksgroups.len() + 1 {
+    colors.c4
+  },
   stroke: frame(colors.c1),
-  align: (x, y) => 
-    if x == 0 and y != tasksgroups.len() + 1 {horizon}
-    else if x == 1 {horizon + center}
-    else if x==0 and y == tasksgroups.len() + 1 {right},
+  align: (x, y) => if x == 0 and y != tasksgroups.len() + 1 {
+    horizon
+  } else if x == 1 { horizon + center } else if x == 0
+    and y == tasksgroups.len() + 1 { right },
   table.header[Phases][Heures allouées],
   ..for (name, key) in tasksgroups {
-    {for t in tasks { if key == t.related_group {crt_hours = crt_hours + t.estimated_time}}}
+    {
+      for t in tasks {
+        if key == t.related_group { crt_hours = crt_hours + t.estimated_time }
+      }
+    }
     (name, str(crt_hours))
-    {total_hours = total_hours + crt_hours; crt_hours = 0}
+    {
+      total_hours = total_hours + crt_hours
+      crt_hours = 0
+    }
   },
-  [*Total*],[*#str(total_hours)*]
+  [*Total*], [*#str(total_hours)*],
 )
 
 
@@ -116,10 +133,10 @@ Ce #lower(project.scope) possède un poids de #project.credits crédits (1 créd
 
 // Apply styling to the frame
 #let frame(stroke) = (x, y) => (
-  left: if calc.odd(x) {1pt},
-  right: if x == 1 {1pt},
-  top: if y == 3 {1pt},
-  bottom: if y == 2 {1pt},
+  left: if calc.odd(x) { 1pt },
+  right: if x == 1 { 1pt },
+  top: if y == 3 { 1pt },
+  bottom: if y == 2 { 1pt },
 )
 
 #for t in tasks {
@@ -129,8 +146,9 @@ Ce #lower(project.scope) possède un poids de #project.credits crédits (1 créd
       rows: 3,
       columns: (16%, 16%, 20%, 48%),
       stroke: frame(colors.c1),
-      align: (x,y) =>
-        if (y == 2 or y == 3) and x != 3 {center} else {left},
+      align: (x, y) => if (y == 2 or y == 3) and x != 3 { center } else {
+        left
+      },
 
       // Activity name
       grid.cell(
@@ -143,7 +161,7 @@ Ce #lower(project.scope) possède un poids de #project.credits crédits (1 créd
           weight: "medium",
           fill: white,
           t.name,
-        )
+        ),
       ),
 
       // Activity description
@@ -155,11 +173,19 @@ Ce #lower(project.scope) possède un poids de #project.credits crédits (1 créd
       ),
 
       // Activity details headers
-      ..([*Date de début*], [*Date de fin*], [*Temps estimé [h]*], [*Phase associé*])
-        .map(grid.cell.with(y: 2, inset: 7pt,)),
+      ..(
+        [*Date de début*],
+        [*Date de fin*],
+        [*Temps estimé [h]*],
+        [*Phase associé*],
+      ).map(grid.cell.with(y: 2, inset: 7pt)),
       // Activity details contents
-      ..([#t.date_start.display()], [#t.date_end.display()], [#t.estimated_time], [#for g in tasksgroups {if g.key == t.related_group {g.name}}])
-        .map(grid.cell.with(y: 3, inset: 7pt)),
-    )
+      ..(
+        [#t.date_start.display()],
+        [#t.date_end.display()],
+        [#t.estimated_time],
+        [#for g in tasksgroups { if g.key == t.related_group { g.name } }],
+      ).map(grid.cell.with(y: 3, inset: 7pt)),
+    ),
   )
 }

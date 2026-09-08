@@ -14,10 +14,24 @@
   logo: none,
   body,
 ) = {
-  set page(flipped: false, margin: (bottom: 2cm, top: 2cm, x: 1.5cm), paper: "a4")
-  set text(region: "ch", lang: lang, font: "Roboto", size: 11pt, weight: "regular")
+  set page(
+    flipped: false,
+    margin: (bottom: 2cm, top: 2cm, x: 1.5cm),
+    paper: "a4",
+  )
+  set text(
+    region: "ch",
+    lang: lang,
+    font: "Roboto",
+    size: 11pt,
+    weight: "regular",
+  )
   show link: set text(fill: blue.darken(60%))
-  set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: ([•], [◦], [⁃]))
+  set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: (
+    [•],
+    [◦],
+    [⁃],
+  ))
   set enum(indent: 5pt, spacing: 0.8em, body-indent: 0.4em)
 
   set-database(toml("../common/lang.toml"))
@@ -37,7 +51,11 @@
     v(12pt)
 
     set align(left)
-    text(fill: colors.c2, size: 28pt, weight: "bold")[#project.scope - #project.name]
+    text(
+      fill: colors.c2,
+      size: 28pt,
+      weight: "bold",
+    )[#project.scope - #project.name]
     v(15pt)
 
     set table(
@@ -60,23 +78,29 @@
 
     table(
       columns: (25%, 75%),
-      [#linguify("school")],        [#entity.name],
-      [#linguify("sector")],        [#entity.sector],
-      [#linguify("orientation")],   [#entity.orientation],
-      [#linguify("year")],          [#entity.year],
-      [#linguify("author")],        [#for a in authors {
-                                        if a == authors.first() { a.lastname + " " + a.firstname }
-                                        else { ", " + a.lastname + " " + a.firstname }
-                                      }],
-      [#linguify("supervisors")],   [#for s in supervisors {
-                                        if s == supervisors.first() { s.lastname + " " + s.firstname }
-                                        else { ", " + s.lastname + " " + s.firstname }
-                                      }],
-      [#linguify("locality")],      [#entity.locality],
+      [#linguify("school")], [#entity.name],
+      [#linguify("sector")], [#entity.sector],
+      [#linguify("orientation")], [#entity.orientation],
+      [#linguify("year")], [#entity.year],
+      [#linguify("author")],
+      [#for a in authors {
+        if a == authors.first() { a.lastname + " " + a.firstname } else {
+          ", " + a.lastname + " " + a.firstname
+        }
+      }],
+
+      [#linguify("supervisors")],
+      [#for s in supervisors {
+        if s == supervisors.first() { s.lastname + " " + s.firstname } else {
+          ", " + s.lastname + " " + s.firstname
+        }
+      }],
+
+      [#linguify("locality")], [#entity.locality],
       [#linguify("date_creation")], [#report.date_creation.display()],
-      [#linguify("date_rendu")],    [#datetime.today().display()],
-      [#linguify("version")],       [#versions.last().version],
-      [#linguify("gitlab")],        [#link(project.git_url)[#linguify("gitlab_url")]],
+      [#linguify("date_rendu")], [#datetime.today().display()],
+      [#linguify("version")], [#versions.last().version],
+      [#linguify("gitlab")], [#link(project.git_url)[#linguify("gitlab_url")]],
     )
 
     pagebreak()

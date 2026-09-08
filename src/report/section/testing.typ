@@ -9,17 +9,17 @@
  * Modified By: Dimitri Julmy
  * --------------------------------------------------------------------------------
  * Copyright (c) 2025 Dimitri Julmy
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * --------------------------------------------------------------------------------
@@ -35,11 +35,11 @@ Un bon ingénieur sait l'importance de délivrer un produit de qualité et fiabl
 
 Pour un projet informatique, ce chapitre décrit les tests unitaires, les tests d'intégration et les tests système. Vous pouvez décrire les résultats des tests dans une table en indiquant :
 
-    Le nom du test
-    La fonctionnalité qui est vérifiée par le test
-    Le résultat attendu
-    Le résultat obtenu
-    Un commentaire
+Le nom du test
+La fonctionnalité qui est vérifiée par le test
+Le résultat attendu
+Le résultat obtenu
+Un commentaire
 
 Décrivez aussi les mécanismes que vous avez mis en place pour vérifier votre programme (CI/CD, analyse statique de code...) et évaluez les performances de votre solution (en temps CPU et en mémoire).
 

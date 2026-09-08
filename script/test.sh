@@ -18,7 +18,7 @@ trap 'rm -rf "$TMPDIR_OUT"' EXIT
 
 # Always re-install so tests reflect current source
 echo -e "${YELLOW}Installing package...${NC}"
-bash "$SCRIPT_DIR/install.sh" > /dev/null
+bash "$SCRIPT_DIR/install.sh" >/dev/null
 
 echo ""
 echo "Running template compilation tests..."

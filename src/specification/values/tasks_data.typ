@@ -18,7 +18,9 @@
 
 // ---------- Tasks
 
-#let hours_per_weeks = calc.floor(project.credits*project.hours_per_credit/project.duration)
+#let hours_per_weeks = calc.floor(
+  project.credits * project.hours_per_credit / project.duration,
+)
 
 #let tasks = (
   (

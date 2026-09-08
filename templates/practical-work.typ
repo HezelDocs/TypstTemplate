@@ -2,10 +2,24 @@
 #import "@preview/linguify:0.5.0": linguify, set-database
 
 #let practical-work(metadata: (:), authors: (), logo: none, body) = {
-  set page(flipped: false, margin: (bottom: 2cm, top: 2cm, x: 1.5cm), paper: "a4")
-  set text(font: "Roboto", lang: metadata.lang, region: "ch", size: 11pt, weight: "regular")
+  set page(
+    flipped: false,
+    margin: (bottom: 2cm, top: 2cm, x: 1.5cm),
+    paper: "a4",
+  )
+  set text(
+    font: "Roboto",
+    lang: metadata.lang,
+    region: "ch",
+    size: 11pt,
+    weight: "regular",
+  )
   show link: set text(fill: blue.darken(60%))
-  set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: ([•], [◦], [⁃]))
+  set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: (
+    [•],
+    [◦],
+    [⁃],
+  ))
   set enum(indent: 5pt, spacing: 0.8em, body-indent: 0.4em)
 
   set-database(toml("../common/lang.toml"))
@@ -46,9 +60,11 @@
       stroke: none,
       inset: 3pt,
       align: left + horizon,
-      [#linguify("repository_uri")], [#link(metadata.git_url)[#metadata.git_url]],
-      [#linguify("date_creation")],  [#metadata.date_creation.display()],
-      [#linguify("date_rendu")],     [#datetime.today().display()],
+      [#linguify("repository_uri")],
+      [#link(metadata.git_url)[#metadata.git_url]],
+
+      [#linguify("date_creation")], [#metadata.date_creation.display()],
+      [#linguify("date_rendu")], [#datetime.today().display()],
     )
 
     pagebreak()

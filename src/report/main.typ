@@ -1,5 +1,5 @@
-#import "@local/hezel-templates:0.1.0": report, chapter-header, colors, linguify
-#import "data/metadata.typ": metadata, authors, supervisors, experts, versions
+#import "@local/hezel-templates:0.1.0": chapter-header, colors, linguify, report
+#import "data/metadata.typ": authors, experts, metadata, supervisors, versions
 
 #show: report.with(
   metadata: metadata,

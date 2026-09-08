@@ -21,10 +21,24 @@
   logo: none,
   body,
 ) = {
-  set page(flipped: false, margin: (bottom: 2cm, top: 2cm, x: 1.5cm), paper: "a4")
-  set text(font: "Roboto", lang: metadata.lang, region: "ch", size: 11pt, weight: "regular")
+  set page(
+    flipped: false,
+    margin: (bottom: 2cm, top: 2cm, x: 1.5cm),
+    paper: "a4",
+  )
+  set text(
+    font: "Roboto",
+    lang: metadata.lang,
+    region: "ch",
+    size: 11pt,
+    weight: "regular",
+  )
   show link: set text(fill: blue.darken(60%))
-  set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: ([•], [◦], [⁃]))
+  set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: (
+    [•],
+    [◦],
+    [⁃],
+  ))
   set enum(indent: 5pt, spacing: 0.8em, body-indent: 0.4em)
 
   set-database(toml("../common/lang.toml"))
@@ -44,7 +58,11 @@
     v(12pt)
 
     set align(left)
-    text(fill: colors.c2, size: 28pt, weight: "bold")[#metadata.scope - #metadata.type]
+    text(
+      fill: colors.c2,
+      size: 28pt,
+      weight: "bold",
+    )[#metadata.scope - #metadata.type]
     v(15pt)
 
     set table(
@@ -67,27 +85,33 @@
 
     table(
       columns: (25%, 75%),
-      [#linguify("entite")],        [#metadata.entity],
-      [#linguify("section")],       [#metadata.section],
-      [#linguify("profil")],        [#metadata.profil],
-      [#linguify("year")],          [#metadata.year],
-      [#linguify("autor")],         [#for a in authors {
-                                        a.firstname + " " + a.lastname
-                                        if a != authors.last() { ", " }
-                                      }],
-      [#linguify("supervisor")],    [#for s in supervisors {
-                                        s.firstname + " " + s.lastname
-                                        if s != supervisors.last() { ", " }
-                                      }],
-      [#linguify("expert")],        [#for e in experts {
-                                        e.firstname + " " + e.lastname
-                                        if e != experts.last() { ", " }
-                                      }],
-      [#linguify("locality")],      [#metadata.locality],
+      [#linguify("entite")], [#metadata.entity],
+      [#linguify("section")], [#metadata.section],
+      [#linguify("profil")], [#metadata.profil],
+      [#linguify("year")], [#metadata.year],
+      [#linguify("autor")],
+      [#for a in authors {
+        a.firstname + " " + a.lastname
+        if a != authors.last() { ", " }
+      }],
+
+      [#linguify("supervisor")],
+      [#for s in supervisors {
+        s.firstname + " " + s.lastname
+        if s != supervisors.last() { ", " }
+      }],
+
+      [#linguify("expert")],
+      [#for e in experts {
+        e.firstname + " " + e.lastname
+        if e != experts.last() { ", " }
+      }],
+
+      [#linguify("locality")], [#metadata.locality],
       [#linguify("date_creation")], [#metadata.date_creation.display()],
-      [#linguify("date_rendu")],    [#datetime.today().display()],
-      [#linguify("version")],       [#versions.last().version],
-      [#linguify("gitlab")],        [#link(metadata.git_url)],
+      [#linguify("date_rendu")], [#datetime.today().display()],
+      [#linguify("version")], [#versions.last().version],
+      [#linguify("gitlab")], [#link(metadata.git_url)],
     )
 
     pagebreak()

@@ -73,9 +73,9 @@
     firstname: [],
     lastname: [],
     gender: [],
-    title:[],
+    title: [],
     society: [],
-    url: ""
+    url: "",
   ),
 )
 

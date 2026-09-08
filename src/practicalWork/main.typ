@@ -1,5 +1,5 @@
-#import "@local/hezel-templates:0.1.0": practical-work, linguify
-#import "data/metadata.typ": metadata, authors
+#import "@local/hezel-templates:0.1.0": linguify, practical-work
+#import "data/metadata.typ": authors, metadata
 
 #show: practical-work.with(
   metadata: metadata,

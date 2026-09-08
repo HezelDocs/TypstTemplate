@@ -37,22 +37,22 @@ echo "Created new '$TEMPLATE' project at $DEST"
 echo ""
 echo "Next steps:"
 case "$TEMPLATE" in
-  report|practicalWork)
-    echo "  1. Edit $DEST/data/metadata.typ"
-    echo "  2. Add your logo to $DEST/asset/logos/"
-    ;;
-  minutesMeeting)
-    echo "  1. Edit $DEST/data/minute_data.typ"
-    echo "  2. Add your logo to $DEST/asset/"
-    ;;
-  minutesAgenda)
-    echo "  1. Edit $DEST/data/agenda_data.typ"
-    echo "  2. Add your logo to $DEST/asset/"
-    ;;
-  specification)
-    echo "  1. Edit $DEST/values/metadata.typ"
-    echo "  2. Add your logo to $DEST/assets/"
-    ;;
+report | practicalWork)
+  echo "  1. Edit $DEST/data/metadata.typ"
+  echo "  2. Add your logo to $DEST/asset/logos/"
+  ;;
+minutesMeeting)
+  echo "  1. Edit $DEST/data/minute_data.typ"
+  echo "  2. Add your logo to $DEST/asset/"
+  ;;
+minutesAgenda)
+  echo "  1. Edit $DEST/data/agenda_data.typ"
+  echo "  2. Add your logo to $DEST/asset/"
+  ;;
+specification)
+  echo "  1. Edit $DEST/values/metadata.typ"
+  echo "  2. Add your logo to $DEST/assets/"
+  ;;
 esac
 echo "  3. Run: typst compile $DEST/main.typ"
 echo ""

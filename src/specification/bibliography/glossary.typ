@@ -11,7 +11,9 @@
 // ---------- Imports
 
 // Third-party
-#import "@preview/glossarium:0.5.6": make-glossary, print-glossary, register-glossary
+#import "@preview/glossarium:0.5.6": (
+  make-glossary, print-glossary, register-glossary,
+)
 
 // Values
 
@@ -36,8 +38,8 @@
 
 #set figure(placement: none)
 #show figure: set block(width: 100%)
-#show figure.caption: c =>[
-    #align(left, [#c.body])
+#show figure.caption: c => [
+  #align(left, [#c.body])
 ]
 
 #print-glossary(glossary)

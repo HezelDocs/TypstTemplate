@@ -23,7 +23,7 @@
   text(
     size: 13pt,
     weight: "semibold",
-    it
+    it,
   )
 }
 

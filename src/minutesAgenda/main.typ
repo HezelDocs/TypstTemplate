@@ -1,5 +1,5 @@
 #import "@local/hezel-templates:0.1.0": minutes-agenda
-#import "data/agenda_data.typ": agenda, actors, goals
+#import "data/agenda_data.typ": actors, agenda, goals
 
 #show: minutes-agenda.with(
   agenda: agenda,
