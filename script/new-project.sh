@@ -28,7 +28,7 @@ if [ -e "$DEST" ]; then
   exit 1
 fi
 
-cp -r "$SRC" "$DEST"
+cp -rL "$SRC" "$DEST"
 
 # Remove compiled output from the copy
 find "$DEST" -name "*.pdf" -delete
