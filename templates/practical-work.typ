@@ -1,28 +1,19 @@
 #import "../common/colors.typ": colors
-#import "@preview/linguify:0.5.0": linguify, set-database
+#import "../common/base-style.typ": apply-doc-base, doc-heading
+#import "@preview/linguify:0.5.0": linguify
 
-#let practical-work(metadata: (:), authors: (), logo: none, body) = {
-  set page(
-    flipped: false,
-    margin: (bottom: 2cm, top: 2cm, x: 1.5cm),
-    paper: "a4",
-  )
-  set text(
-    font: "Roboto",
-    lang: metadata.lang,
-    region: "ch",
-    size: 11pt,
-    weight: "regular",
-  )
-  show link: set text(fill: blue.darken(60%))
+#let practical-work(
+  metadata: (:),
+  authors: (),
+  logo: none,
+  body,
+) = apply-doc-base(lang: metadata.lang, {
   set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: (
     [•],
     [◦],
     [⁃],
   ))
   set enum(indent: 5pt, spacing: 0.8em, body-indent: 0.4em)
-
-  set-database(toml("../common/lang.toml"))
 
   // Cover page (scoped to avoid leaking set rules into body)
   {
@@ -71,26 +62,7 @@
   }
 
   set page(numbering: "1/1")
-
-  show heading: it => {
-    if it.level == 1 [
-      #set align(center)
-      #set text(size: 30pt, weight: "extrabold", fill: white)
-      #block(fill: colors.c1, width: 100%, inset: 10pt, it)
-      #v(10pt)
-    ] else if it.level == 2 [
-      #set align(left)
-      #set text(size: 25pt, weight: "bold", fill: colors.c1)
-      #(it)
-      #v(-17pt)
-      #line(stroke: 2pt + colors.c1, length: 100%)
-      #v(0pt)
-    ] else if it.level == 3 [
-      #set align(left)
-      #set text(size: 17pt, weight: "medium", fill: colors.c1)
-      #(it)
-    ]
-  }
+  show heading: doc-heading
 
   body
-}
+})
