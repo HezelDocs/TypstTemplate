@@ -1,5 +1,5 @@
 #import "@local/hezel-templates:0.1.0": linguify, specification
-#import "./values/metadata.typ": (
+#import "./data/metadata.typ": (
   authors, entity, experts, mandants, project, report, supervisors, versions,
 )
 

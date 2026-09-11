@@ -50,7 +50,7 @@ minutesAgenda)
   echo "  2. Add your logo to $DEST/asset/"
   ;;
 specification)
-  echo "  1. Edit $DEST/values/metadata.typ"
+  echo "  1. Edit $DEST/data/metadata.typ"
   echo "  2. Add your logo to $DEST/assets/"
   ;;
 esac

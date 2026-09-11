@@ -13,7 +13,7 @@
 // Third-party
 
 // Values
-#import "../values/styling_data.typ": colors
+#import "../data/styling.typ": colors
 
 // ---------- Table of Illustrations
 

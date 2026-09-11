@@ -13,10 +13,10 @@
 // Third-party
 
 // Values
-#import "../values/styling_data.typ": colors
-#import "../values/tasks_group_data.typ": tasksgroups
-#import "../values/metadata.typ": project
-#import "../values/tasks_data.typ": tasks
+#import "../data/styling.typ": colors
+#import "../data/tasks_group.typ": tasksgroups
+#import "../data/metadata.typ": project
+#import "../data/tasks.typ": tasks
 
 // ---------- Time repartition
 

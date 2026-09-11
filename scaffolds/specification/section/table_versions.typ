@@ -17,8 +17,8 @@
 // ---------- Imports
 
 // Values
-#import "../values/metadata.typ": versions
-#import "../values/styling_data.typ": colors
+#import "../data/metadata.typ": versions
+#import "../data/styling.typ": colors
 
 // ---------- Table of Versions
 

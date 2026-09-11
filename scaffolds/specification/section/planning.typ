@@ -14,10 +14,10 @@
 #import "@preview/timeliney:0.4.0"
 
 // Values
-#import "../values/styling_data.typ": colors
-#import "../values/tasks_group_data.typ": tasksgroups
-#import "../values/milestones_data.typ": milestones
-#import "../values/tasks_data.typ": tasks
+#import "../data/styling.typ": colors
+#import "../data/tasks_group.typ": tasksgroups
+#import "../data/milestones.typ": milestones
+#import "../data/tasks.typ": tasks
 
 // ---------- Planning
 
