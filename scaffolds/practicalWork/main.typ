@@ -4,7 +4,7 @@
 #show: practical-work.with(
   metadata: metadata,
   authors: authors,
-  logo: image("asset/logos/" + metadata.logo, width: 50%),
+  logos: metadata.logos.map(f => image("asset/logos/" + f, width: 100%)),
 )
 
 // ---------- Introduction

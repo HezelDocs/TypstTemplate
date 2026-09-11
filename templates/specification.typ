@@ -1,5 +1,6 @@
 #import "../common/colors.typ": colors
 #import "../common/base-style.typ": apply-doc-base, doc-heading
+#import "../common/logos.typ": logo-row
 #import "@preview/linguify:0.5.0": linguify
 
 // specification's level-3 headings get their own filled block, unlike the
@@ -20,7 +21,7 @@
   experts: (),
   versions: (),
   lang: "fr",
-  logo: none,
+  logos: (),
   body,
 ) = apply-doc-base(lang: lang, {
   set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: (
@@ -32,7 +33,7 @@
 
   // Cover page
   {
-    if logo != none { logo }
+    logo-row(logos)
     v(17pt)
 
     set line(length: 100%)

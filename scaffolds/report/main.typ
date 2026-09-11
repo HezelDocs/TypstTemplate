@@ -7,7 +7,7 @@
   supervisors: supervisors,
   experts: experts,
   versions: versions,
-  logo: image("asset/logos/" + metadata.logo, width: 50%),
+  logos: metadata.logos.map(f => image("asset/logos/" + f, width: 100%)),
 )
 
 // ---------- Table of Versions

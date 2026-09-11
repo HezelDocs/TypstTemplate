@@ -1,11 +1,12 @@
 #import "../common/colors.typ": colors
+#import "../common/logos.typ": logo-row
 #import "@preview/linguify:0.5.0": linguify, set-database
 
-#let minutes-agenda(agenda: (:), actors: (), goals: (), logo: none, body) = {
+#let minutes-agenda(agenda: (:), actors: (), goals: (), logos: (), body) = {
   set text(region: "ch", lang: agenda.lang, font: "Roboto")
   set page(margin: (top: 3cm, bottom: 3cm, x: 1.5cm))
-  if logo != none {
-    set page(header: align(center, logo))
+  if logos.len() > 0 {
+    set page(header: logo-row(logos))
   }
   show link: set text(fill: blue.darken(60%))
   set page(numbering: "1/1")

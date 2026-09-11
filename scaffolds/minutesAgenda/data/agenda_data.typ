@@ -30,7 +30,9 @@
 
 #let agenda = (
   lang: "en",
-  logo: "logo_hes-so.png",
+  // Up to 5 logos (school(s), partner company...), rendered left to right,
+  // each getting an equal share of the row's width.
+  logos: ("logo_hes-so.png",),
   project_scope: [Project scope],
   project_name: [Project name],
   seance_date: datetime(year: 2025, month: 12, day: 18),

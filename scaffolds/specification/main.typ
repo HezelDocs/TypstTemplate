@@ -1,6 +1,7 @@
 #import "@local/hezel-templates:0.1.0": linguify, specification
 #import "./data/metadata.typ": (
-  authors, entity, experts, mandants, project, report, supervisors, versions,
+  authors, entity, experts, logos, mandants, project, report, supervisors,
+  versions,
 )
 
 #show: specification.with(
@@ -12,7 +13,7 @@
   mandants: mandants,
   experts: experts,
   versions: versions,
-  logo: image("assets/logo_heia.svg", width: 100%),
+  logos: logos.map(f => image("assets/" + f, width: 100%)),
 )
 
 // ---------- Table des versions

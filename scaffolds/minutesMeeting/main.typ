@@ -6,5 +6,5 @@
   actors: actors,
   talks: talks,
   tasks: tasks,
-  logo: image("asset/" + minute.logo, width: 30%),
+  logos: minute.logos.map(f => image("asset/" + f, width: 100%)),
 )

@@ -1,5 +1,6 @@
 #import "../common/colors.typ": colors
 #import "../common/base-style.typ": apply-doc-base, doc-heading
+#import "../common/logos.typ": logo-row
 #import "@preview/linguify:0.5.0": linguify
 
 #let chapter-header(title) = {
@@ -19,7 +20,7 @@
   supervisors: (),
   experts: (),
   versions: (),
-  logo: none,
+  logos: (),
   body,
 ) = apply-doc-base(lang: metadata.lang, {
   set list(indent: 5pt, spacing: 0.8em, body-indent: 0.4em, marker: (
@@ -31,7 +32,7 @@
 
   // Cover page
   {
-    if logo != none { align(center, logo) }
+    logo-row(logos)
     v(17pt)
 
     set line(length: 100%)

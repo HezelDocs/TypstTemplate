@@ -1,4 +1,5 @@
 #import "common/colors.typ": colors
+#import "common/logos.typ": logo-row
 #import "common/utils.typ": gender, lang, title
 #import "templates/practical-work.typ": practical-work
 #import "templates/report.typ": chapter-header, report

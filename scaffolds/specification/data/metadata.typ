@@ -14,6 +14,12 @@
 
 // Values
 
+// ---------- Logos
+
+// Up to 5 logos (school(s), partner company...), rendered left to right,
+// each getting an equal share of the row's width.
+#let logos = ("logo_heia.svg",)
+
 // ---------- Report
 
 #let report = (

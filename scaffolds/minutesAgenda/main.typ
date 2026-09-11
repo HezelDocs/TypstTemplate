@@ -5,5 +5,5 @@
   agenda: agenda,
   actors: actors,
   goals: goals,
-  logo: image("asset/" + agenda.logo, width: 30%),
+  logos: agenda.logos.map(f => image("asset/" + f, width: 100%)),
 )
