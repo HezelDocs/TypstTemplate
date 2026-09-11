@@ -219,7 +219,23 @@ live until you reinstall:
 ./script/install.sh
 ```
 
-To bump the version, edit `typst.toml` and update the version string in all project `main.typ` imports accordingly.
+To bump the version, run:
+
+```bash
+./script/bump-version.sh 0.2.0
+```
+
+This updates `typst.toml`, updates every scaffold's own `main.typ` (they must always track the current
+version), then scans sibling directories for other projects that still pin the old version and offers to
+bump those too, before reinstalling and re-testing.
+
+**Version pinning is intentional, not a bug to route around.** Each installed version lives in its own
+directory under `~/.local/share/typst/packages/local/hezel-templates/<version>/` — installing a new one
+never deletes an older one. So a project generated with `new-project.sh` and pinned to `0.1.0` keeps
+compiling exactly as it did the day it was created, even after you bump the package to `0.2.0` for new
+projects. Nothing breaks silently; an existing project only picks up template changes when you
+deliberately bump its `main.typ` import (`bump-version.sh` will offer to do this for you, or do it by
+hand).
 
 ---
 
