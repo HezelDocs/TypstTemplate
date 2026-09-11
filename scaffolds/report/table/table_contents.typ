@@ -27,9 +27,14 @@
 
 // ---------- Imports
 
-#import "@local/hezel-templates:0.1.0": linguify
+#import "@local/hezel-templates:0.1.0": chapter-header, linguify
 
 // ---------- Table of Contents
+
+// Same title treatment as the rest of the manually-inserted chapters
+// (Revision History, Glossary...) rather than Typst's default outline
+// title styling.
+#chapter-header(linguify("table_content"))
 
 #show outline.entry.where(level: 1): it => {
   v(16pt, weak: true)
@@ -37,7 +42,7 @@
 }
 
 #outline(
-  title: linguify("table_content"),
+  title: none,
   depth: 2,
   indent: 2em,
 )

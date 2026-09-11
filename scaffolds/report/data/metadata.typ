@@ -44,6 +44,10 @@
   (firstname: "Jane", lastname: "Doe", gender: gender.f),
 )
 
+// Company/organization that mandated the project, if any — leave empty
+// () if there is none, the cover page skips the section entirely.
+#let mandants = ()
+
 // ---------- Document versions (oldest to newest)
 
 #let versions = (

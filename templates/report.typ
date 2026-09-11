@@ -1,17 +1,16 @@
-#import "../common/colors.typ": colors
 #import "../common/base-style.typ": apply-doc-base, doc-heading
-#import "../common/logos.typ": logo-row
+#import "../common/cover-page.typ": title-cover
 #import "@preview/linguify:0.5.0": linguify
 
+// Same visual treatment as a level-1 heading (see doc-heading in
+// common/base-style.typ), for manually-inserted chapter titles that are
+// excluded from the numbered heading/TOC flow (Revision History,
+// Executive Summary, Glossary, Annexes...).
 #let chapter-header(title) = {
-  set align(center)
-  block(
-    fill: colors.c1,
-    width: 100%,
-    inset: 10pt,
-    text(size: 30pt, weight: "extrabold", fill: white, title),
-  )
-  v(10pt)
+  v(1em)
+  set align(left)
+  text(size: 20pt, weight: "bold", fill: black, title)
+  v(1em)
 }
 
 #let report(
@@ -19,6 +18,7 @@
   authors: (),
   supervisors: (),
   experts: (),
+  mandants: (),
   versions: (),
   logos: (),
   body,
@@ -30,77 +30,19 @@
   ))
   set enum(indent: 5pt, spacing: 0.8em, body-indent: 0.4em)
 
-  // Cover page
+  // Cover page — shared with `specification` via common/cover-page.typ, so
+  // the two stay identical.
   {
-    logo-row(logos)
-    v(17pt)
-
-    set line(length: 100%)
-    stack(line(stroke: 2pt + colors.c1))
-    v(7pt)
-    set align(center)
-    text(fill: colors.c1, size: 45pt, weight: "extrabold")[#metadata.name]
-    v(7pt)
-    stack(line(stroke: 2pt + colors.c1))
-    v(12pt)
-
-    set align(left)
-    text(
-      fill: colors.c2,
-      size: 28pt,
-      weight: "bold",
-    )[#metadata.scope - #metadata.type]
-    v(15pt)
-
-    set table(
-      stroke: none,
-      gutter: 0.2em,
-      fill: (x, _) => if x == 0 { colors.c2 } else { colors.c3 },
-      inset: 8pt,
+    title-cover(
+      logos: logos,
+      title: metadata.name,
+      authors: authors,
+      supervisors: supervisors,
+      mandants: mandants,
+      submitted-to: metadata.entity,
+      faculty: metadata.section,
+      date: metadata.date_creation.display(),
     )
-    show table.cell: it => {
-      set align(horizon + left)
-      if it.x == 0 {
-        set text(fill: white, size: 15pt, weight: "bold")
-        it
-      } else {
-        set text(fill: white, size: 15pt, weight: "semibold")
-        it
-      }
-    }
-    show link: underline
-
-    table(
-      columns: (25%, 75%),
-      [#linguify("entite")], [#metadata.entity],
-      [#linguify("section")], [#metadata.section],
-      [#linguify("profil")], [#metadata.profil],
-      [#linguify("year")], [#metadata.year],
-      [#linguify("autor")],
-      [#for a in authors {
-        a.firstname + " " + a.lastname
-        if a != authors.last() { ", " }
-      }],
-
-      [#linguify("supervisor")],
-      [#for s in supervisors {
-        s.firstname + " " + s.lastname
-        if s != supervisors.last() { ", " }
-      }],
-
-      [#linguify("expert")],
-      [#for e in experts {
-        e.firstname + " " + e.lastname
-        if e != experts.last() { ", " }
-      }],
-
-      [#linguify("locality")], [#metadata.locality],
-      [#linguify("date_creation")], [#metadata.date_creation.display()],
-      [#linguify("date_rendu")], [#datetime.today().display()],
-      [#linguify("version")], [#versions.last().version],
-      [#linguify("gitlab")], [#link(metadata.git_url)],
-    )
-
     pagebreak()
     pagebreak()
   }

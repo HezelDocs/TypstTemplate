@@ -25,10 +25,6 @@
  * --------------------------------------------------------------------------------
  */
 
-// ---------- Imports
-
-#import "../data/styling.typ": colors
-
 // ---------- Table of Illustrations
 
 // Primary Heading format in the table

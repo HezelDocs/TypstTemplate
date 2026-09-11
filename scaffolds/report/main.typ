@@ -1,90 +1,36 @@
-#import "@local/hezel-templates:0.1.0": chapter-header, colors, linguify, report
-#import "data/metadata.typ": authors, experts, metadata, supervisors, versions
+#import "@local/hezel-templates:0.1.0": chapter-header, linguify, report
+#import "data/metadata.typ": (
+  authors, experts, mandants, metadata, supervisors, versions,
+)
 
 #show: report.with(
   metadata: metadata,
   authors: authors,
   supervisors: supervisors,
   experts: experts,
+  mandants: mandants,
   versions: versions,
   logos: metadata.logos.map(f => image("asset/logos/" + f, width: 100%)),
 )
 
-// ---------- Table of Versions
+// ---------- Front matter (unnumbered, not in the outline) ----------
+
+// ---------- Revision History
 
 #chapter-header(linguify("table_version")) <table_versions>
 #include "table/table_versions.typ"
 
-// ---------- Executive Summary
+// ---------- Abstract & Keywords
 
 #pagebreak()
-#chapter-header(linguify("summary")) <executive_summary>
+#chapter-header(linguify("summary")) <abstract>
 #include "section/summary.typ"
 
-// ---------- Table of Contents
+// ---------- Acronyms
 
 #pagebreak()
-#include "table/table_contents.typ"
-
-// ---------- Introduction
-
-#pagebreak()
-= #linguify("introduction") <introduction>
-#include "section/introduction.typ"
-
-// ---------- Context
-
-#pagebreak()
-= #linguify("contexte") <context>
-#include "section/context.typ"
-
-// ---------- Analysis
-
-#pagebreak()
-= #linguify("analysis") <analysis>
-#include "section/analysis.typ"
-
-// ---------- Conception
-
-#pagebreak()
-= #linguify("conception") <conception>
-#include "section/conception.typ"
-
-// ---------- Implementation
-
-#pagebreak()
-= #linguify("implementation") <implementation>
-#include "section/implementation.typ"
-
-// ---------- Testing and Validation
-
-#pagebreak()
-= #linguify("testing") <testing>
-#include "section/testing.typ"
-
-// ---------- Potential Developments
-
-#pagebreak()
-= #linguify("potential_dev") <potentiel_dev>
-#include "section/potentiel_dev.typ"
-
-// ---------- Conclusion
-
-#pagebreak()
-= #linguify("conclusion") <conclusion>
-#include "section/conclusion.typ"
-
-// ---------- Declaration of Honor
-
-#pagebreak()
-= #linguify("honor") <honor>
-#include "section/honor.typ"
-
-// ---------- Acknowledgements
-
-#pagebreak()
-= #linguify("acknowledgements") <acknowledgements>
-#include "section/acknowledgements.typ"
+#chapter-header(linguify("acronyms")) <acronyms>
+#include "section/acronyms.typ"
 
 // ---------- Glossary
 
@@ -92,19 +38,76 @@
 #chapter-header(linguify("glossary")) <glossary>
 #include "bibliography/glossary.typ"
 
-// ---------- Table of References
+// ---------- Table of Figures
+
+#pagebreak()
+#chapter-header(linguify("table_illustrations")) <table_illustrations>
+#include "table/table_illustrations.typ"
+
+// ---------- Table of Tables
+
+#pagebreak()
+#chapter-header(linguify("table_of_tables")) <table_of_tables>
+#include "table/table_of_tables.typ"
+
+// ---------- Table of Contents
+
+#pagebreak()
+#include "table/table_contents.typ"
+
+// ---------- Body (numbered, in the outline) ----------
+
+// ---------- Introduction
+
+#pagebreak()
+= #linguify("introduction") <introduction>
+#include "section/introduction.typ"
+
+// ---------- State of the Art
+
+#pagebreak()
+= #linguify("state_of_the_art") <state_of_the_art>
+#include "section/state_of_the_art.typ"
+
+// ---------- Methodology
+
+#pagebreak()
+= #linguify("methodology") <methodology>
+#include "section/methodology.typ"
+
+// ---------- Results
+
+#pagebreak()
+= #linguify("results") <results>
+#include "section/results.typ"
+
+// ---------- Discussion
+
+#pagebreak()
+= #linguify("discussion") <discussion>
+#include "section/discussion.typ"
+
+// ---------- Conclusion & Perspectives
+
+#pagebreak()
+= #linguify("conclusion_perspectives") <conclusion>
+#include "section/conclusion.typ"
+
+// ---------- Back matter ----------
+
+// ---------- Acknowledgements
+
+#pagebreak()
+= #linguify("acknowledgements") <acknowledgements>
+#include "section/acknowledgements.typ"
+
+// ---------- References
 
 #pagebreak()
 = #linguify("table_references") <table_references>
 #include "table/table_references.typ"
 
-// ---------- Table of Illustrations
-
-#pagebreak()
-= #linguify("table_illustrations") <table_illustrations>
-#include "table/table_illustrations.typ"
-
-// ---------- Annexes
+// ---------- Appendices (optional — remove this section entirely if unused)
 
 #pagebreak()
 = #linguify("annexes") <annexes>
